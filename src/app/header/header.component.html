@@ -1,0 +1,23 @@
+<header>
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a>{{title}}<span>.</span></a>
+    </div>
+
+    <div class="header-navis">
+      <div
+      [className]="isBar ? 'material-icons header-bar': 'material-icons header-bar-rotate'" 
+      (click)="onClickNavi()">drag_handle
+      </div>
+
+      <ul [className]="isNavi ? 'header-navi hidden ': 'header-navi'">
+        <li *ngFor="let n of headerNavi">
+          <a href="{{n.link}}">
+            <span  class="material-icons">{{n.icon}}</span>
+            {{n.title}}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
