@@ -2,6 +2,7 @@ header {
   height: 50px;
   background-color: black;
   color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, .7);
 }
 
 .header-wrapper {
@@ -15,6 +16,7 @@ header {
 
 .header-title > a {
   font-size: 20px;
+  font-family: "Courgette", cursive;
 }
 
 .header-title > a > span {
@@ -22,62 +24,74 @@ header {
   font-size: 20px;
 }
 
-.header-bar,
-.header-bar-rotate {
+.header-navis {
+  position: relative;
   height: 24px;
   width: 24px;
+}
+
+.header-bar1, 
+.header-bar2 {
   cursor: pointer;
   user-select: none;
-  transition: transform 1s;
-  transform: rotate(0deg);
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition-property: transform, opacity;
+  transition-duration: 1s;
+  transition-timing-function: ease-in;
+  transform: rotate(0);
   transform-origin: center center;
 }
 
-.header-bar-rotate {
-  transform: rotate(-90deg);
+.header-bar1 {
+  z-index: 1;
 }
 
-.header-bar:hover,
-.header-bar-rotate:hover {
+.header-bar2 {
+  opacity: 0;
+  z-index: 0;
+}
+
+.header-bar1.rotate {
+  transform: rotate(-90deg);
+  opacity: 0;
+  z-index: 0;
+}
+
+.header-bar2.open {
+  transition: opacity 1s;
+  transition-delay: .3s;
+  transition-timing-function: ease-in;
+  opacity: 1;
+  z-index: 1;
+}
+
+.header-bar1:hover,
+.header-bar2:hover {
   color: red;
 }
 
-.header-bar > span {
-  font-size: 24px;
-  line-height: 15px;
-  height: 15px;
-}
-
-.header-navis {
-  position: relative;
-}
-
-.header-navis > 
-
 .header-navi {
+  background-color: black;
+  border-radius: 0 0 0 5px;
   list-style: none;
-  width: 200px;
+  width: 230px;
+  padding-right: 20px;
   position: absolute;
-  top: 40px;
-  right: 0;
-  animation: 1s open;
+  top: 38px;
+  right: -20px;
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 1s;
 }
 
 .header-navi.hidden {
-  display: none;
-}
-
-@keyframes open {
-  from {
-    display: none;
-    opacity: 0;
-    transform: translateX(200px);
-  }
-  to {
-    display: block;
-    opacity: 1;
-    transform: translateX(0);
-  }
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(200px);
+  transition: all 1s;
 }
 
 .header-navi > li {
@@ -96,6 +110,3 @@ header {
   padding-bottom: 4px;
   vertical-align: middle;
 }
-
-
-

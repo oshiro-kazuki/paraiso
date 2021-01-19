@@ -13,7 +13,7 @@ export class HeaderComponent {
   isBar = true;
   isNavi = true;
   onClickNavi() {
-    this.isBar ? (this.isBar = false) : (this.isBar = true);
-    this.isNavi ? (this.isNavi = false) : (this.isNavi = true);
+    this.isBar ? this.isBar = false : this.isBar = true;
+    this.isNavi ? this.isNavi = false : this.isNavi = true;
   } 
 }

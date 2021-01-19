@@ -5,12 +5,18 @@
     </div>
 
     <div class="header-navis">
-      <div
-      [className]="isBar ? 'material-icons header-bar': 'material-icons header-bar-rotate'" 
+      <span class="material-icons header-bar1"
+      [class.rotate]="!isBar" 
       (click)="onClickNavi()">drag_handle
-      </div>
+      </span>
 
-      <ul [className]="isNavi ? 'header-navi hidden ': 'header-navi'">
+      <span class="material-icons header-bar2"
+      [class.open]="!isBar" 
+      (click)="onClickNavi()">clear
+      </span>
+      
+
+      <ul class="header-navi" [class.hidden]="isNavi">
         <li *ngFor="let n of headerNavi">
           <a href="{{n.link}}">
             <span  class="material-icons">{{n.icon}}</span>
