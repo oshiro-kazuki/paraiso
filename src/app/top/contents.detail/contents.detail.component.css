@@ -1,0 +1,59 @@
+.contents-wrapper {
+  margin: 20px 10px 0;
+}
+
+.contents-text {
+  padding-bottom: 10px;
+}
+
+.contents-text > h3 {
+  color: #bfbfbf;
+}
+
+.contents-text > h3::after {
+  content: attr(title);
+  font-size: 14px;
+  color: rgb(126, 119, 119);
+  padding-left: 10px;
+}
+
+.contents-text > p {
+  font-size: 17px;
+  font-weight: 700;
+  padding: 10px;
+}
+
+.content-form {
+  padding-bottom: 20px;
+}
+.content-image {
+  overflow: hidden;
+}
+
+.content-image > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform .3s;
+  opacity: .9;
+  border-radius: 3px;
+}
+
+.content-image > img:hover {
+  transform: scale(1.02);
+  transform-origin: center;
+  opacity: 1;
+}
+
+.content-text {
+  padding: 5px;
+}
+
+.content-text > h5 {
+  font-size: 15px;
+}
+
+.content-text > p {
+  font-size: 14px;
+  color: #efefef;
+}

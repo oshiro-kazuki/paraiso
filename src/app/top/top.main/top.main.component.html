@@ -1,17 +1,49 @@
-<div class="top-wrapper">
-  <main>
-    <div class="top-image"></div>
+<div class="wh100">
+  <!-- メイン画像 -->
+  <div class="top-image wh100"></div>
+  
+  <!-- 見出し -->
+  <section class="top-about">
+    <div class="top-about-text pb-30" id="aboutText">
+      <h1 class="font-m">ウイスキー文化研究所認定<br>
+        ウイスキーエキスパート
+      </h1>
+    </div>
 
-    <div class="top-about">
-      <img class="top-about-logo" src="../../../assets/img/logo1.PNG">
-      <div class="top-about-text">
-        <h2>ウイスキー文化研究所認定<br>
-          ウイスキーエキスパート</h2>
+    <img class="top-about-logo" 
+    src="../../../assets/img/logo1.PNG">
+
+    <div class="top-about-paraiso prl-10">
+      <h5 class="font-m">
+        Paraiso(パライソ)は、ポルトガル語で楽園という意味です。<br>
+        私たちは豊富なウイスキーや日本酒、ビール、シェフこだわりの
+        ご料理であなたをお待ちしております。<br>
+        ぜひ、お越しください。
+      </h5>
+    </div>
+  </section>
+  
+  <!-- コンテンツ -->
+  <section class="top-contents pb-100">
+    <a *ngFor="let c of contents; let contentId = index"
+    [routerLink]=[contentId]
+    class="contents pd-10">
+     <h5 title="{{c.sub}}" class="font-m">{{c.title}}</h5>
+     <div class="contens-img-over">
+       <img src="{{c.src}}" class="contents-img">
+     </div>
+    </a>
+  </section>
+
+  <!-- ピップアップ -->
+  <div class="top-news">
+    <div class="news-area">
+      <h4>お知らせ</h4>
+      <div class="news-panel"
+      *ngFor="let p of picup">
+      {{p.title}}
       </div>
     </div>
-  </main>
-
-  <div class="top-contents">
-    
   </div>
 </div>
+
