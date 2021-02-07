@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { from } from 'rxjs';
+
 import { HeaderComponent } from './header/header.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PickupService } from './service/pickup.service'
 
 @NgModule({
   declarations: [
@@ -14,9 +16,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    PickupService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

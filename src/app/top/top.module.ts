@@ -6,6 +6,8 @@ import { TopComponent } from './top.component';
 import { TopMainComponent } from './top.main/top.main.component';
 import { ContentsDetailComponent } from './contents.detail/contents.detail.component';
 import { TakeoutComponent } from './takeout/takeout.component';
+import { PickupService } from '../service/pickup.service';
+import { from } from 'rxjs';
 
 const routes: Routes = [
   {
@@ -28,9 +30,11 @@ const routes: Routes = [
   ],
   imports: [
     RouterModule.forChild(routes),
-    CommonModule
+    CommonModule,
   ],
-  providers: [],
+  providers: [
+    PickupService,
+  ],
   bootstrap: []
 })
 export class TopModule { }

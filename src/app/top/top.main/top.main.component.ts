@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { from } from 'rxjs';
+
+import { info } from './info';
 import { contents } from '../../list-item/contents/contents';
-import { picup } from './popup';
+import { pickup } from '../../list-item/pickup'
+import { PickupService } from '../../service/pickup.service';
+import { stoc } from './stoc';
 
 
 @Component({
@@ -10,56 +14,88 @@ import { picup } from './popup';
   styleUrls: ['./top.main.component.css']
 })
 export class TopMainComponent implements OnInit{
+  info = info;
   contents = contents;
-  picup = picup;
+  pickup = pickup;
   
-  ngOnInit() {
+  constructor(
+    public pickupService: PickupService,
+  ) {}
     
+  ngOnInit() {
+    this.rainbow();
+    this.aaa();
+  }
+  
+  // インフォメーション
+  isInfoView = false;
+  clickInfo() {
+    this.isInfoView = true;
   }
 
-  createObserver() {
-    const target = document.getElementById('aboutText');
-    let observer;
-  
-    let options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: this.buildThresholdList()
-    };
-  
-    observer = new IntersectionObserver(this.handleIntersect, options);
-    observer.observe(target);
+  closeInfo() {
+    this.isInfoView = false;
   }
 
-  buildThresholdList() {
-    let thresholds = [];
-    let numSteps = 20;
+  // ピップアップ
+  clickPic(list: any) {
+    this.pickupService.clickPickup(list);
+  }
+
+  closePic() {
+    this.pickupService.close();
+  }
+
+  // インフォボタン
+  red = 50;
+  green = 100;
+  blue = 150;
+
+  countup(color:any) {
+    // 白と黒にしないよう0と255は省く
+    const RGBMIN = 50;
+    const RGBMAX = 200;
+
+    color += 10;
+    if(color >= RGBMAX) color = RGBMIN;
+    return color;
+  }
+
+  color() {
+    this.red = this.countup(this.red);
+    this.green = this.countup(this.green);
+    this.blue = this.countup(this.blue);
+  }
   
-    for (let i=1.0; i<=numSteps; i++) {
-      let ratio = i/numSteps;
-      thresholds.push(ratio);
+  rainbow() {
+    setInterval(() => {
+      this.color();
+    }, 300);
+  }
+  
+  // 入荷情報
+  stoc = stoc;
+  stocCurrent = 0;
+  stocSlide = 0
+
+  stocLength() {
+    console.log(this.stoc.length)
+    return this.stoc.length -1;
+  }
+  
+  setCarousel() {
+    if(this.stocLength() === this.stocCurrent) {
+      this.stocCurrent = 0;
+      this.stocSlide = 0;
+    } else {
+      this.stocCurrent++;
+      this.stocSlide -= 220;
     }
-  
-    thresholds.push(0);
-    return thresholds;
   }
 
-  handleIntersect(entries, observer) {
-    const numSteps = 20.0;
-
-    let boxElement;
-    let prevRatio = 0.0;
-    let increasingColor = "rgba(40, 40, 190, ratio)";
-    let decreasingColor = "rgba(190, 40, 40, ratio)";
-    entries.forEach((entry) => {
-      if (entry.intersectionRatio > prevRatio) {
-        entry.target.style.backgroundColor = increasingColor.replace("ratio", entry.intersectionRatio);
-      } else {
-        entry.target.style.backgroundColor = decreasingColor.replace("ratio", entry.intersectionRatio);
-      }
-  
-      prevRatio = entry.intersectionRatio;
-    });
+  aaa() {
+    setInterval(() => {
+      this.setCarousel();
+    }, 3000);
   }
-  
 }
