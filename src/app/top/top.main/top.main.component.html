@@ -1,17 +1,136 @@
-<div class="top-wrapper">
-  <main>
-    <div class="top-image"></div>
+<div class="wh100 top-wrapper">
+  <!-- フィンフォメーション -->
+  <div class="info-bar">
+    <div
+    class="info-btn"
+    [ngStyle]="{'box-shadow': '0 0 5px 1px rgb('+ red +','+ green +','+ blue +')'}"
+    *ngFor="let n of info">
+      <p
+      *ngIf="n.access"
+      class="font-m material-icons"
+      (click)="clickInfo()">
+      {{n.icon}}
+      {{n.title}}
+    </p>
+    
+    <a 
+    *ngIf="n.action"
+    [href]="n.action"
+      class="font-m material-icons">
+      {{n.icon}}
+      {{n.title}}
+      </a>
+    </div>
+  </div>
 
-    <div class="top-about">
-      <img class="top-about-logo" src="../../../assets/img/logo1.PNG">
-      <div class="top-about-text">
-        <h2>ウイスキー文化研究所認定<br>
-          ウイスキーエキスパート</h2>
+  <div 
+  class="overLay"
+  [class.display-none]="!isInfoView"
+  (click)="closeInfo()">
+    <div class="modal-close pb-20">
+      <div
+      class="material-icons modal-close-btn font-xl"
+      (click)="closeInfo()">clear
       </div>
     </div>
-  </main>
 
-  <div class="top-contents">
-    
+    <div class="info-modal">
+      <h5 class="font-m">アクセス</h5>
+      <iframe
+      class="info-modal-map"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3575.947091146168!2d127.8117468147012!3d26.328212683382876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34e50df4a0e3610b%3A0x58d86ba72b845f86!2z44OR44Op44Kk44K9!5e0!3m2!1sja!2sjp!4v1612578310355!5m2!1sja!2sjp" width="300" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+      <p title="{{info[0].mail}}">{{info[0].access}}</p>
+    </div>
   </div>
+  
+  <!-- メイン画像 -->
+  <div class="top-image wh100"></div>
+  
+  <!-- 見出し -->
+  <section class="top-about">
+    <div class="top-about-text pb-30" id="aboutText">
+      <h1 class="font-m">ウイスキー文化研究所認定<br>
+        ウイスキーエキスパート
+      </h1>
+    </div>
+
+    <img class="top-about-logo" 
+    src="../../../assets/img/logo1.PNG">
+
+    <div class="top-about-paraiso prl-10">
+      <h5 class="font-m">
+        Paraiso(パライソ)は、ポルトガル語で楽園という意味です。<br>
+        私たちは豊富なウイスキーや日本酒、ビール、シェフこだわりの
+        ご料理であなたをお待ちしております。<br>
+        ぜひ、お越しください。
+      </h5>
+    </div>
+  </section>
+
+    <!-- 入荷情報 -->
+    <div class="top-stoc">
+      <h4 class="font-l">入荷情報</h4>
+  
+      <div
+      [ngStyle]="{'transform': 'translateX('+ stocSlide +'px)'}"
+      class="stock-carousel">
+        <div
+        *ngFor="let s of stoc"
+        class="panel-stock">
+          <p class="font-color">{{s.date}}</p>
+          <div class="stoc-img">
+            <img src="{{s.src}}">
+          </div>
+          <h6>{{s.name}}</h6>
+        </div>
+      </div>
+    </div>
+
+
+  <!-- ピップアップ -->
+  <div class="top-pickup">
+    <h4 class="font-l">お知らせ</h4>
+  
+    <ul class="pickup-panel">
+      <li *ngFor="let p of pickup"
+      (click)="clickPic(p)">
+        <span>{{p.date}}</span>
+        <p>{{p.title}}</p>
+      </li>
+    </ul>
+  </div>
+  
+  <div 
+  class="overLay"
+  [class.display-none]="!pickupService.isView"
+  (click)="closePic()">
+    <div class="modal-close pb-20">
+      <div
+      class="material-icons modal-close-btn font-xl"
+      (click)="closePic()">clear
+      </div>
+    </div>
+
+    <div class="pickup-modal">
+      <h5 class="font-m pb-10">{{pickupService.pickupTitle}}</h5>
+      <p class="font-l ">{{pickupService.pickupText}}</p>
+    </div>
+  </div>
+  
+  <!-- コンテンツ -->
+  <section class="top-contents pb-50">
+    <a *ngFor="let c of contents; let contentId = index"
+    [routerLink]=[contentId]
+    class="contents pd-10">
+     <h5 title="{{c.sub}}" class="font-m">{{c.title}}</h5>
+     <div class="contens-img-over">
+       <img src="{{c.src}}" class="contents-img">
+     </div>
+    </a>
+  </section>
+
+
+
+
 </div>
+

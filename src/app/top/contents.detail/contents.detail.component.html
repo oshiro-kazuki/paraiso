@@ -1,0 +1,17 @@
+<div class="contents-wrapper">
+  <div class="contents-text">
+    <h3 title="{{contents.sub}}">{{contents.title}}</h3>
+    <p>{{contents.desc}}</p>
+  </div>
+
+  <div *ngFor="let c of contents.content" class="content-form">
+    <div class="content-image">
+      <img src="{{c.src}}" alt="">
+    </div>
+
+    <div class="content-text">
+      <h5>{{c.name}}</h5>
+      <p>{{c.desc}}</p>
+    </div>
+  </div>
+</div>

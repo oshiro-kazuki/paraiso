@@ -1,29 +1,33 @@
 <header>
   <div class="header-wrapper">
     <div class="header-title">
-      <a>{{title}}<span>.</span></a>
+      <a
+      routerLink="/"
+      class="font-l"
+      >{{title}}<span>.</span></a>
     </div>
-
+<!-- 
     <div class="header-navis">
-      <span class="material-icons header-bar1"
+      <span class="material-icons header-bar1 font-xl"
       [class.rotate]="!isBar" 
       (click)="onClickNavi()">drag_handle
       </span>
 
-      <span class="material-icons header-bar2"
+      <span class="material-icons header-bar2 font-xl"
       [class.open]="!isBar" 
       (click)="onClickNavi()">clear
       </span>
       
 
       <ul class="header-navi" [class.hidden]="isNavi">
-        <li *ngFor="let n of headerNavi">
-          <a href="{{n.link}}">
-            <span  class="material-icons">{{n.icon}}</span>
+        <li *ngFor="let n of headerNavi" class="pb-10">
+          <a href="{{n.link}}"
+          class="font-m material-icons"
+          title="{{n.icon}}">
             {{n.title}}
           </a>
         </li>
       </ul>
-    </div>
+    </div> -->
   </div>
 </header>
